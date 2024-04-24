@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog with vulnerabilities</title>
+    <link rel="stylesheet" type="text/css" href="/styles.css">
+</head>
+
+<body>
+    <header>
+        <div class="header-content">
+            <h1>Welcome to the blog with vulnerabilities</h1>
+            <nav>
+                <a href="/index.html">Welcome</a>
+                <a href="./articles.html">Articles</a>
+                <a href="./contact.html">Contact</a>
+                <a href="/login">Logout</a>
+            </nav>
+        </div>
+    </header>
+    <div class="content">
+        <h1>Users List</h1>
+        <a href="./adduser.html" class="add-user-button">Add User</a>
+        <table id="usersTable">
+            <tr>
+                <th>ID</th>
+                <th>User name</th>
+                <th>Email</th>
+                <th>Role</th>
+            </tr>
+        </table>
+    </div>
+    <script>
+        fetch('/get-users')
+            .then(response => response.json())
+            .then(users => {
+                const table = document.getElementById('usersTable');
+                users.forEach(user => {
+                    const row = table.insertRow();
+                    row.insertCell().textContent = user.id;
+                    row.insertCell().textContent = user.username;
+                    row.insertCell().textContent = user.email;
+                    row.insertCell().textContent = user.role;
+                });
+            })
+            .catch(error => console.error('Error:', error));
+    </script>
+    <style>
+        #usersTable {
+          font-family: Arial, Helvetica, sans-serif;
+          border-collapse: collapse;
+          width: 100%;
+        }
+        
+        #usersTable td, #usersTable th {
+          border: 1px solid #ddd;
+          padding: 8px;
+        }
+        
+        #usersTable tr:nth-child(even){background-color: #f2f2f2;}
+        #usersTable tr:nth-child(odd){background-color: #e6e6e6;}
+        
+        #usersTable tr:hover {background-color: #ddd;}
+        
+        #usersTable th {
+          padding-top: 12px;
+          padding-bottom: 12px;
+          text-align: left;
+          background-color: #005858;
+          color: white;
+        }
+        </style>
+</body>
+
+</html>

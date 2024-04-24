@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exploring Cypress for Automated Testing</title>
+    <link rel="stylesheet" type="text/css" href="/styles.css">
+</head>
+
+<body>
+    <header>
+        <div class="header-content">
+            <h1>Welcome to the blog with vulnerabilities</h1>
+            <nav>
+                <a href="/index.html">Welcome</a>
+                <a href="../articles.html">Articles</a>
+                <a href="#">Contact</a>
+                <a href="./login">Logout</a>
+            </nav>
+            <a href="./admin.html" class="admin-button">Administration</a>
+        </div>
+    </header>
+    <div class="content">
+        <h1>Contact Us !</h1>
+        <form id="contactForm">
+            <fieldset>
+                <legend data-cy="contact-form-title">Contact</legend>
+                <label for="name" data-cy="contact-name-label">Name :</label>
+                <input type="text" id="name" name="name" data-cy="contact-name">
+                <div id="nameError" class="error" data-cy="contact-name-error"></div><br><br>
+
+                <label for="email" data-cy="contact-email-label">Email :</label>
+                <input type="email" id="email" name="email" data-cy="contact-email">
+                <div id="emailError" class="error" data-cy="contact-email-error"></div><br><br>
+
+                <label for="message" data-cy="contact-message-label">Message :</label>
+                <textarea id="message" name="message" data-cy="contact-message"></textarea>
+                <div id="messageError" class="error" data-cy="contact-message-error"></div><br><br>
+
+                <button class="form-button" type="submit" data-cy="contact-submit-button">Send</button>
+            </fieldset>
+        </form>
+        <div id="snackbar" data-cy="contact-snackbar-ok">Thanks for your message !</div>
+    </div>
+    <footer>
+        <div class="footer-content">
+            <p>2024 Blog with vulnerabilities - All rights reserved.</p>
+            <a data-cy="footer-privacy-policy" href="./privacy-policy.html">Privacy policy</a>
+        </div>
+    </footer>
+    <script>
+        document.getElementById('contactForm').addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
+
+            let hasError = false;
+
+            resetErrors();
+            
+            if (!isValidName(name)) {
+                displayError('nameError', 'Please enter your name');
+                hasError = true;
+            }
+
+            if (!isValidEmail(email)) {
+                displayError('emailError', 'Please enter a valid email');
+                hasError = true;
+            }
+
+            if (!isValidMessage(message)) {
+                displayError('messageError', 'Please enter your message');
+                hasError = true;
+            }
+
+            if (!hasError) {
+                showSnackbar();
+            }
+        });
+
+        function resetErrors() {
+            document.getElementById('nameError').textContent = "";
+            document.getElementById('emailError').textContent = "";
+            document.getElementById('messageError').textContent = "";
+        }
+
+        function displayError(elementId, message) {
+            document.getElementById(elementId).textContent = message;
+        }
+
+        function isValidName(name) {
+            return name.trim() !== '';
+        }
+
+        function isValidEmail(email) {
+            const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+            return emailRegex.test(email);
+        }
+
+        function isValidMessage(message) {
+            return message.trim() !== '';
+        }
+
+        function showSnackbar() {
+            const x = document.getElementById("snackbar");
+            x.className = "show";
+            setTimeout(function () { x.className = x.className.replace("show", ""); }, 3000);
+        }
+
+    </script>
+</body>
+
+</html>
