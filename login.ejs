@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Blog</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+
+<body>
+    <div class="login-container">
+        <h2>Login</h2>
+        <form id="loginForm">
+            <input data-cy="username" class="input-form" type="text" id="username" name="username"
+                placeholder="User Name">
+            <input data-cy="password" class="input-form" type="password" id="password" name="password"
+                placeholder="Password">
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+            <button data-cy="signInButton" type="submit">Login</button>
+        </form>
+        <form id="totpForm" style="display: none;">
+            <input data-cy="mfa-code" class="input-form" type="text" id="mfaCode" name="mfaCode"
+                placeholder="TOTP Code">
+            <button data-cy="mfaButton" type="submit">Submit</button>
+        </form>
+        <div data-cy="snack-bar" id="snackbar">The user has not been found... Try again</div>
+        <div data-cy="snack-bar-mfa" id="snackbar-mfa" >The mfa is not correct... Try again</div>
+    </div>
+
+    <script src="./backend/authentification.js"></script>
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function (event) {
+            event.preventDefault();
+            var username = document.getElementById('username').value;
+            var password = document.getElementById('password').value;
+            authenticate(username, password);
+        });
+
+        document.getElementById('totpForm').addEventListener('submit', function (event) {
+            event.preventDefault();
+            var mfaCode = document.getElementById('mfaCode').value;
+            validateTOTP(mfaCode);
+        });
+    </script>
+</body>
+
+</html>

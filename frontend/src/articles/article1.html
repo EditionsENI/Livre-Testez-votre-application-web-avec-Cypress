@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exploring Cypress for Automated Testing</title>
+    <link rel="stylesheet" type="text/css" href="/styles.css">
+    <script src="/script.js"></script>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1>Welcome to the blog with vulnerabilities</h1>
+            <nav>
+                <a href="/index.html">Welcome</a>
+                <a href="../articles.html">Articles</a>
+                <a href="../contact.html">Contact</a>
+                <a href="./login">Logout</a>
+            </nav>
+            <a href="../admin.html" class="admin-button">Administration</a>
+        </div>
+    </header>
+    <article>
+        <h1>Exploring Cypress for Automated Testing</h1>
+        <p>Cypress is a revolutionary front-end testing platform. Unlike other testing tools, Cypress is built directly on the browser, enabling faster and more reliable interactions with the tested web application.</p>
+        <p>This article explores the benefits of Cypress, including its browser-based architecture, user-friendly interface, and its ability to handle asynchronous tests more effectively.</p>
+        
+        <h2>Comments</h2>
+        <section id="latest-posts">
+            <h1>Latest Comment</h1>
+        </section>
+        <section>
+            <h2>Leave a comment</h2>
+            <input data-cy="user-comment" type="text" id="userComment" placeholder="Your comment...">
+            <button data-cy="post-comment-button" onclick="postComment()">Send</button>
+        </section>
+        <div data-cy="snack-bar" id="snackbar">Your comment has been posted</div>
+    </article>
+    <script>
+        function loadComments() {
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", "/get-comments", true);
+        
+            xhr.onload = function () {
+                if (xhr.status === 200) {
+                    var comments = JSON.parse(xhr.responseText);
+                    displayComments(comments);
+                }
+            };
+        
+            xhr.send();
+        }
+        
+        function displayComments(comments) {
+            var commentsSection = document.getElementById('latest-posts');
+            comments.forEach(function(comment) {
+                var commentDiv = document.createElement('div');
+                commentDiv.className = 'comment';
+                commentDiv.textContent = comment.comment;
+                commentsSection.appendChild(commentDiv);
+            });
+        }
+        
+        window.onload = loadComments;
+        </script>
+</body>
+</html>

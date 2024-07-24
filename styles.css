@@ -1,0 +1,214 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+}
+
+header, footer {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    background-color: black; 
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+}
+
+.header-content {
+    width: 100%; 
+}
+
+
+
+h1 {
+    color: white;
+}
+
+a {
+    color: white;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+main {
+    padding: 20px;
+}
+
+.login-form{
+    display: flex;
+    flex-direction: column;   
+    gap: 10px;                
+    width: 100%;              
+    max-width: 400px; 
+}
+
+.articles-container {
+    background: cadetblue;
+    display: flex;            
+    justify-content: center;  
+    align-items: center;      
+    height: 100vh;          
+    flex-direction: column; 
+}
+
+.content {
+    background: cadetblue;
+    display: flex;            
+    align-items: center;      
+    min-height: 70vh;          
+    flex-direction: column; 
+}
+
+article {
+    background: cadetblue;
+    display: flex;            
+    justify-content: center;  
+    align-items: center;      
+    height: 100vh;          
+    flex-direction: column; 
+}
+
+.login-container {
+    background: cadetblue;
+    display: flex;            
+    justify-content: center;  
+    align-items: center;      
+    height: 100vh;          
+    flex-direction: column; 
+}
+
+.input-form{
+    padding: 10px;            
+    border-radius: 5px;       
+    border: 1px solid #ddd; 
+}
+
+
+#snackbar {
+    visibility: hidden; 
+    min-width: 250px; 
+    margin-left: -125px; 
+    background-color: orangered; 
+    color: white; 
+    text-align: center; 
+    border-radius: 2px; 
+    padding: 16px; 
+    position: fixed; 
+    z-index: 1; 
+    left: 50%; 
+    bottom: 30px; 
+}
+#snackbar.show {
+    visibility: visible;
+    -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+#snackbar-mfa {
+    visibility: hidden; 
+    min-width: 250px; 
+    margin-left: -125px; 
+    background-color: orangered; 
+    color: white; 
+    text-align: center; 
+    border-radius: 2px; 
+    padding: 16px; 
+    position: fixed; 
+    z-index: 1; 
+    left: 50%; 
+    bottom: 30px; 
+}
+  
+#snackbar-mfa.show {
+  visibility: visible;
+  -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+  animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+fieldset {
+    color: white
+}
+
+legend {
+    color: white
+}
+
+.checkbox{
+    width: 10px;
+}
+
+.consent-privacy {
+    width: 400px;
+}
+
+input, textarea {
+    width: 249px;
+  }
+   
+  textarea {
+    height: 100px;
+  }
+
+  label {
+    width: 110px;
+    display: inline-block;
+    vertical-align: top;
+  }
+
+.form-button {
+    background-color: #005858;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    text-align: center;
+    border-style: none;
+}
+
+.form-button:hover {
+    background-color: cadetblue;
+}
+
+.admin-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 8px 15px;
+    background-color: #005858;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.admin-button:hover {
+    background-color: cadetblue;
+}
+
+.error {
+    color: red;
+}
+
+@-webkit-keyframes fadein {
+  from {bottom: 0; opacity: 0;} 
+  to {bottom: 30px; opacity: 1;}
+}
+
+@keyframes fadein {
+  from {bottom: 0; opacity: 0;}
+  to {bottom: 30px; opacity: 1;}
+}
+
+@-webkit-keyframes fadeout {
+  from {bottom: 30px; opacity: 1;} 
+  to {bottom: 0; opacity: 0;}
+}
+
+@keyframes fadeout {
+  from {bottom: 30px; opacity: 1;}
+  to {bottom: 0; opacity: 0;}
+}
